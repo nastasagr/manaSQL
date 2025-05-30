@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1;
+  font-family: "Sora", sans-serif;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  border: none;
+}
+
+:root {
+  --primary-color: #dbc732;
+  --text-color: #dadada;
+  --background-body: linear-gradient(to top, #0d0d0d, rgb(20, 20, 20, 0.9));
+  --form-background: linear-gradient(to top, #0d0d0d, rgba(255, 255, 255, 0.1));
+}
+
+.logo {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+a:hover,
+button:hover {
+  opacity: 0.8;
+}
+a {
+  color: inherit;
+}
+
+body {
+  user-select: none;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-body);
+}
+
+.error {
+  width: 100%;
+  height: 35px;
+  background-color: red;
+  position: absolute;
+  top: 0;
+}
+
+.form__section {
+  width: 100%;
+}
+
+.form .inputs {
+  margin-top: 1.65rem;
+}
+
+.form {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  background: var(--form-background);
+  border-radius: 8px;
+  border: 2px solid #414141;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.auth_title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.auth_sub_title {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.normal_input-label {
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 32px;
+}
+
+.input_wrapper {
+  margin-top: 4px;
+  position: relative;
+  height: 36px;
+}
+
+.normal_input {
+  background-color: #303030;
+  border: 1px solid #414141;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0px 16px;
+  height: 36px;
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+  color: inherit;
+}
+
+.normal_input:focus {
+  border-color: var(--primary-color);
+}
+
+.normal_input::placeholder {
+  color: inherit;
+}
+
+.form__remmember {
+  display: block;
+  font-size: 12px;
+  margin-top: 32px;
+}
+
+.submit_btn {
+  margin-top: 32px;
+  width: 100%;
+  height: 39px;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 600;
+  color: #21270e;
+  cursor: pointer;
+}
+
+.form__sign-up {
+  margin-top: 32px;
+  display: block;
+  font-size: 12px;
+}
