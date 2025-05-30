@@ -4,6 +4,25 @@ header('Content-Type: application/json');
 
 $method = $_GET['method'] ?? '';
 
+function getPDO(): ?PDO
+{
+    if (!isset($_SESSION['db'])) return null;
+
+    $config = $_SESSION['db'];
+    $host = $config['host'];
+    $user = $config['user'];
+    $pass = $config['pass'] ?? '';
+    $database = $config['database'];
+
+    try {
+        return new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+    } catch (PDOException $e) {
+        return null;
+    }
+}
+
 switch ($method) {
     case 'connect':
         $input = json_decode(file_get_contents('php://input'), true);
@@ -14,19 +33,16 @@ switch ($method) {
 
         if (!$host || !$user || !$database) {
             http_response_code(400);
-            echo json_encode(['success' => false, 'message' => 'All fields are empty']);
+            echo json_encode(['success' => false, 'message' => 'Missing required fields']);
             exit;
         }
 
-        $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-
         try {
-            $pdo = new PDO($dsn, $user, $pass, [
+            $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]);
 
-          
-            $_SESSION['db'] = compact('host', 'user', 'database');
+            $_SESSION['db'] = compact('host', 'user','database');
 
             echo json_encode([
                 'success' => true,
@@ -37,7 +53,7 @@ switch ($method) {
             http_response_code(401);
             echo json_encode([
                 'success' => false,
-                'message' => 'Connection failure : ' . $e->getMessage()
+                'message' => 'Connection failed: ' . $e->getMessage()
             ]);
         }
         break;
@@ -46,6 +62,24 @@ switch ($method) {
         $_SESSION = [];
         session_destroy();
         echo json_encode(['success' => true, 'loggedIn' => false]);
+        break;
+
+    case 'tables':
+        $pdo = getPDO();
+        if (!$pdo) {
+            http_response_code(403);
+            echo json_encode(['success' => false, 'message' => 'Not connected']);
+            break;
+        }
+
+        try {
+            $stmt = $pdo->query("SHOW TABLES");
+            $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            echo json_encode(['success' => true, 'tables' => $tables]);
+        } catch (PDOException $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
         break;
 
     case 'sessionCheck':
@@ -58,5 +92,5 @@ switch ($method) {
 
     default:
         http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Unknow method']);
+        echo json_encode(['success' => false, 'message' => 'Unknown method']);
 }
