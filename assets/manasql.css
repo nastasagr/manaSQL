@@ -164,11 +164,18 @@ body {
   left: 0;
   display: flex;
   flex-direction: row;
-  gap: 0.45rem;
+  gap: 0.75rem;
   justify-content: center;
   align-items: center;
 }
 
+.ibox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
 .logout {
   width: 45px;
   height: 45px;
@@ -205,5 +212,45 @@ body {
 }
 
 .i-center {
+  align-items: center;
+}
+
+.tables {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: c;
+  justify-content: center;
+  align-items: center;
+  gap: 0.95rem;
+  position: absolute;
+  padding: 3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.table {
+  width: 200px;
+  height: 100px;
+  background-color: rgb(232, 232, 232);
+  position: relative;
+}
+
+.table::after {
+  content: attr(data-table);
+  position: absolute;
+  text-align: center;
+  top: 0;
+  font-size: .8rem;
+  left: 0;
+  background-color: #dbc732;
+  color: #000;
+  padding: 5px;
+  display: block;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
