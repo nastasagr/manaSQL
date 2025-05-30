@@ -37,6 +37,11 @@ a {
   color: inherit;
 }
 
+body,
+html {
+  overflow: hidden;
+}
+
 body {
   user-select: none;
   flex-direction: column;
@@ -51,9 +56,15 @@ body {
 .error {
   width: 100%;
   height: 35px;
-  background-color: red;
+  background-color: rgb(173, 58, 58);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
   position: absolute;
   top: 0;
+  left: 0;
 }
 
 .form__section {
@@ -141,4 +152,58 @@ body {
   margin-top: 32px;
   display: block;
   font-size: 12px;
+}
+
+.statebar {
+  width: 100%;
+  height: 50px;
+  background-color: var(--primary-color);
+  color: #0d0d0d;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.45rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout {
+  width: 45px;
+  height: 45px;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.67rem;
+  cursor: pointer;
+  top: 2rem;
+  right: 2rem;
+  position: absolute;
+}
+.logout:hover {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.gap-2 {
+  gap: 0.2rem;
+}
+.j-center {
+  justify-content: center;
+}
+
+.i-center {
+  align-items: center;
 }
