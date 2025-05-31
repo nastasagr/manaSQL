@@ -6,7 +6,7 @@ A lightweight PHP Script for managing MySQL database connections <br/> through f
 
 ### Preview
 
-<img width="60%" style="border-radius:12px" src="https://raw.githubusercontent.com/nastasagr/manaSQL/refs/heads/main/preview.png">
+<img width="60%" style="border-radius:18px" src="https://raw.githubusercontent.com/nastasagr/manaSQL/refs/heads/main/preview.png">
 
 ## Features
 
